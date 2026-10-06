@@ -1,0 +1,9 @@
+@echo off
+title Mouse Chaos
+echo Mouse chaos activated! Press Ctrl+C to stop.
+echo.
+
+:loop
+powershell -NoProfile -Command "$w=Add-Type -MemberDefinition '[DllImport(\"user32.dll\")] public static extern bool SetCursorPos(int X,int Y);' -Name Mouse -Namespace Win32 -PassThru; $x=Get-Random -Minimum 100 -Maximum 1200; $y=Get-Random -Minimum 100 -Maximum 700; [Win32.Mouse]::SetCursorPos($x,$y)"
+timeout /t 1 /nobreak >nul
+goto loop
